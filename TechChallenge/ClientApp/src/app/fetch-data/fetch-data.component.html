@@ -2,7 +2,9 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!forecasts && !hasErrors"><em>Loading... ({{this.currentAttempt}})</em></p>
+
+<p *ngIf="hasErrors"><em>Sorry, it was not possible to get the weather. Please, try later.</em></p>
 
 <table class='table' *ngIf="forecasts">
   <thead>
@@ -15,9 +17,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.dateFormatted }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
+      <td>{{ forecast.date }}</td>
+      <td>{{ forecast.temperatureInCelsius }}</td>
+      <td>{{ forecast.temperatureInFahrenheit }}</td>
       <td>{{ forecast.summary }}</td>
     </tr>
   </tbody>
